@@ -1,0 +1,5 @@
+node_modules
+.env
+.vercel
+export.json
+export.json.gz

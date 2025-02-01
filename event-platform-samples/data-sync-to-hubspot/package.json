@@ -1,0 +1,37 @@
+{
+  "name": "eda-sample-hubspot-sync",
+  "version": "1.0.0",
+  "description": "Sample code to demonstrate a webhook that can capture an event and use it to synchronize users in another system.",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon src/index.ts",
+    "initialize": "npm run build && rimraf export.json && rimraf export.json.gz && node dist/initializationScript/index.js",
+    "build": "rimraf dist && tsc",
+    "ts.check": "tsc --project tsconfig.json",
+    "add-build": "git add dist",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "mostekcm",
+  "license": "MIT",
+  "dependencies": {
+    "@hubspot/api-client": "^12.0.1",
+    "auth0": "^4.15.0",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2"
+  },
+  "devDependencies": {
+    "@tsconfig/node20": "^20.1.4",
+    "@types/express": "^4.0.0",
+    "@types/node": "^22.10.5",
+    "nodemon": "^3.1.9",
+    "pre-commit": "^1.2.0",
+    "rimraf": "^6.0.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.2"
+  },
+  "pre-commit": [
+    "ts.check",
+    "build",
+    "add-build"
+  ]
+}
