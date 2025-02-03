@@ -2,11 +2,12 @@
 
 ## Description
 
-This test script is intended to provide some test events and synchronize those events with a demo hubspot tenant. 
+This test script is intended to provide some test events and synchronize those events with a demo hubspot tenant.
 **WARNING**: Don't use this against a production hubspot implementation as it deletes and creates test users.
 **WARNING**: Don't use this against a production Auth0 tenant as it deletes and creates test users.
 
 Contains:
+
 - A setup script for creating the stream.
 - A cleanup script for removing the stream.
 - A script for creating some users and waiting for those users to be synced with hubspot
@@ -40,16 +41,21 @@ NOTE: this is intended to work with either the [data-sync-to-hubspot webhook](..
   - Copy the `CONNECTION_ID` from the Auth0 database (in Authentication->Database) for the tenant (NOTE: that database must be enabled for at least one application). This is the database that we will create users in.
   - Set the `EVENT_STREAM_NAME` to something you will remember what it is for (e.g. mostekcm-event-stream-for-hubspot)
 
+## Create your Event Stream
+
+- NOTE: If using the the [data-sync-to-hubspot webhook](../data-sync-to-hubspot/README.md) or the [data-sync-to-hubspot-with-inngest webhook](../data-sync-to-hubspot-with-inngest/README.md) for your webhook, you will want to set the IGNORE_DATE to the current time in their environment before creating and enabling the event stream
+- To create & enable the stream: `npm run createStream`
+
 ## Run the application
 
-- `npm start`
-- When it complets, you should CTRL-C to kill nodemon. If nodemon restarts it, it will fail because of the files
+- `npm run createUserEvents`
+- This will generate a bunch of events and will check hubspot to make sure that the users all land appropriately
+
+## Cleanup
+
+- Before running a second time, you can run `npm run cleanupUsers` to clear out users from your tenant and hubspot. WARNING: THIS WILL DELETE ALL CONTACTS FROM HUBSPOT, so make sure you are using a test version.
+- If you need to delete and recreate your event stream, run `npm run cleanupStream`
 
 ## TODO
 
-[] Move the delete of the export.json and export.json.gz to node instead of npm so nodemon can work
 [] Add organizations events to create orgs and associate members
-
-## Known Issues
-
-- nodemon will fail if it tries to restart because of the export files
