@@ -1,0 +1,25 @@
+{
+  "name": "eda-sample-hubspot-init-sim",
+  "version": "1.0.0",
+  "description": "Sample code to demonstrate how to initialize the hubspot sync webhook.",
+  "main": "index.js",
+  "scripts": {
+    "createStream": "tsx src/createEventStream.ts",
+    "cleanupStream": "tsx src/cleanupEventStream.ts",
+    "createUserEvents": "tsx src/createUserEvents.ts",
+    "cleanupUsers": "tsx src/cleanupUsers.ts"
+  },
+  "author": "mostekcm",
+  "dependencies": {
+    "@hubspot/api-client": "^12.0.1",
+    "dotenv": "^16.4.7",
+    "ora": "^8.1.1",
+    "uuid": "^11.0.5"
+  },
+  "devDependencies": {
+    "@tsconfig/node20": "^20.1.4",
+    "@types/node": "^22.10.5",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  }
+}
