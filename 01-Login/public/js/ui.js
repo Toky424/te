@@ -63,11 +63,14 @@ const updateUI = async () => {
     if (isAuthenticated) {
       const user = await auth0Client.getUser();
 
-      document.getElementById("profile-data").innerText = JSON.stringify(
-        user,
-        null,
-        2
-      );
+      if (!document.getElementById("profile-data").innerText) {
+        document.getElementById("profile-data").innerText = JSON.stringify(
+          user,
+          null,
+          2
+        );
+      }
+
 
       document.querySelectorAll("pre code").forEach(hljs.highlightBlock);
 
